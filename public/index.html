@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headless UI And Tailwind</title>
+    <link rel="stylesheet" href="./build.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-300 flex justify-center items-center h-screen">
+
+    <!-- TAB -->
+    <section x-data="{tabNO: 1, activeClass: 'text-blue-600 bg-white'}" class="max-w-md flex flex-col gap-y-4 w-full">
+        <!-- TAB HEADER -->
+        <div class="bg-blue-300 p-2 max-w-md rounded-xl flex justify-between items-center gap-x-2">
+            <button @click="tabNO = 1" :class="tabNO === 1 ? activeClass : '' " class="flex-1 font-bold p-2 hover:bg-blue-200 text-center cursor-pointer text-white transition-all duration-700 rounded-xl focus:ring-2 focus:outline-none focus:ring-offset-2 focus:ring-offset-blue-400 focus:ring-white focus:text-blue-400">DropDown</button>
+            <button @click="tabNO = 2" :class="tabNO === 2 ? activeClass : '' " class="flex-1 font-bold p-2 hover:bg-blue-200 text-center cursor-pointer text-white transition-all duration-700 rounded-xl focus:ring-2 focus:outline-none focus:ring-offset-2 focus:ring-offset-blue-400 focus:ring-white focus:text-blue-400">Radio Group</button>
+            <button @click="tabNO = 3" :class="tabNO === 3 ? activeClass : '' " class="flex-1 font-bold p-2 hover:bg-blue-200 text-center cursor-pointer text-white transition-all duration-700 rounded-xl focus:ring-2 focus:outline-none focus:ring-offset-2 focus:ring-offset-blue-400 focus:ring-white focus:text-blue-400">Disclosure</button>
+        </div>
+        <!-- TAB CONTENT -->
+        <div class="p-2 rounded-xl flex justify-center max-w-md">
+            <div x-show="tabNO === 1" class="flex flex-col gap-y-4">
+                <!-- DROPDOWN -->
+                <div class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="w-[28rem] z-10 relative px-4 py-4 inline-flex items-center justify-between gap-4 bg-blue-500 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-white">
+                        <span>Show More</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>              
+                    </button>
+                    <button class="fixed inset-0 bg-gray-200 opacity-50" @click="open = false" x-show="open"></button>
+                    <div class="bg-white w-[28rem] mt-2 rounded-lg flex flex-col overflow-hidden border-gray-200 absolute" x-show="open">
+                        <a href="#" class="black text-gray-700 p-2 hover:bg-gray-300 hover:text-white" @click="open = false">Account</a>
+                        <a href="#" class="black text-gray-700 p-2 hover:bg-gray-300 hover:text-white" @click="open = false">Support</a>
+                        <a href="#" class="black text-gray-700 p-2 hover:bg-gray-300 hover:text-white" @click="open = false">Setting</a>
+                    </div>
+                </div>
+            </div>
+
+            <div x-show="tabNO === 2" class="flex flex-col gap-y-4">
+                <!-- RADIO GROUP -->
+                <section x-data="{radio: 1}" class="w-[28rem]  flex flex-col gap-4 justify-center items-center">
+                
+                    <div @click="radio = 1" :class="radio === 1 ? 'ring-4 ring-blue-300 bg-blue-500 text-blue-500' : ''" class="bg-white cursor-pointer flex justify-between items-center p-4 rounded-xl w-[28rem]">
+                        <div>
+                            <h1 class="font-bold text-lg mb-2">StartUp</h1>
+                            <p>12GB/6 CPUs . 160 GB SSD disk</p>
+                        </div>
+                        <div x-show="radio === 1" class="bg-blue-400 p-2 rounded-full text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>   
+                        </div>
+                    </div>
+                
+                    <div @click="radio = 2" :class="radio === 2 ? 'ring-4 ring-blue-300 bg-blue-500 text-blue-500' : ''" class="bg-white cursor-pointer flex justify-between items-center p-4 rounded-xl w-[28rem]">
+                        <div>
+                            <h1 class="font-bold text-lg mb-2">StartUp</h1>
+                            <p>12GB/6 CPUs . 160 GB SSD disk</p>
+                        </div>
+                        <div x-show="radio === 2" class="bg-blue-400 p-2 rounded-full text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>   
+                        </div>
+                    </div>
+                
+                    <div @click="radio = 3" :class="radio === 3 ? 'ring-4 ring-blue-300 bg-blue-500 text-blue-500' : ''" class="bg-white cursor-pointer flex justify-between items-center p-4 rounded-xl w-[28rem]">
+                        <div>
+                            <h1 class="font-bold text-lg mb-2">StartUp</h1>
+                            <p>12GB/6 CPUs . 160 GB SSD disk</p>
+                        </div>
+                        <div x-show="radio === 3" class="bg-blue-400 p-2 rounded-full text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>   
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+
+            <div x-show="tabNO === 3" class="flex flex-col gap-y-4">
+                <!-- DISCLOSURE -->
+                <div class="bg-white p-4 rounded-xl w-[28rem] flex flex-col gap-y-4 divide-y">
+
+                    <div x-data="{ accordionOne: false }" class="ease-in-out duration-700">
+
+                        <div @click="accordionOne = !accordionOne" class="p-2 rounded-lg cursor-pointer flex justify-between items-center font-bold ease-in-out duration-700">
+                        <span>what is irefund policy?</span> 
+                            <svg :class="accordionOne ? 'origin-center rotate-180' : ''" class="size-6 ease-in-out duration-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>                  
+                        </div>
+                        
+                        <div x-show="accordionOne" class=" text-gray-700 px-4 pt-2 ease-in-out duration-500">
+                            If you're unhappy with your purchase, we'll refund you in full.
+                        </div>
+                    </div>
+
+                    
+                    <div x-data="{ accordionTwo: false }">
+                        
+                        <div @click="accordionTwo = !accordionTwo" class="p-2 rounded-lg cursor-pointer flex justify-between items-center font-bold">
+                        <span>Do you offer technical support?</span> 
+                        <svg :class="accordionTwo ? 'origin-center rotate-180' : ''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 ease-in-out duration-700">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg> 
+                        </div>
+                        
+                        <div x-show="accordionTwo" class="text-gray-700 px-4 pt-2 ease-in-out duration-700">
+                            No.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+</html>
